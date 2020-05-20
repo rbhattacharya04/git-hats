@@ -20,9 +20,16 @@ jobs:
   say_hello:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    env:
+      first_name: John
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+
+    # Environment variables at the steps level
+    env:
+      last_name: Doe
+
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
@@ -46,7 +53,6 @@ jobs:
     # Runs a pre-defined shell script, passing some environment variables as arguments
     - name: Run a shell script
       env: 
-        first_name: John
-        last_name: Doe
-      run: ./hello-world.sh ${{ job.say_hello.steps.env.first_name }} ${{ env.last_name }} ${{ env.nickname }}
+        suffix: Jr.
+      run: ./hello-world.sh ${{ job.say_hello.env.first_name }} ${{ job.say_hello.steps.env.last_name }} ${{ env.suffix }} ${{ env.nickname }}
       
