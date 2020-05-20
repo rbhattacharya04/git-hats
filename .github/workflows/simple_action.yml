@@ -40,7 +40,7 @@ jobs:
         echo test, and deploy your project.
     
     # Setup an environment variable you want available in the next step
-    - name: Setup an environment vairable
+    - name: Setup an environment variable
       run: |
         echo Currently the variable called \'nickname\' is set to \'${{ env.nickname }}\'
         echo ::set-env name=nickname::JD
