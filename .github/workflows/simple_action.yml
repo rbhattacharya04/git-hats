@@ -41,13 +41,13 @@ jobs:
       run: |
         echo Currently the variable called \'nickname\' is set to ${{ env.nickname }}
         echo ::set-env name=nickname::JD
-        echo Now the variable called \'nickname\' is set to ${{ env.nickname }}
+        echo Unfortunately, the variable called \'nickname\' is still set to ${{ env.nickname }} within this context
     
     # Runs a pre-defined shell script, passing some environment variables as arguments
     - name: Run a shell script
-      id: shell_script_step
+      id: shell-script-step
       env: 
         first_name: John
         last_name: Doe
-      run: ./hello-world.sh ${{ steps.shell_script_step.first_name }} ${{ steps.shell_script_step.last_name }} ${{ env.nickname }}
+      run: ./hello-world.sh ${{ steps.shell-script-step.env.first_name }} ${{ steps.shell-script-step.env.last_name }} ${{ env.nickname }}
       
