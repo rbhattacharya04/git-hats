@@ -39,15 +39,14 @@ jobs:
     # Setup an environment variable you want available in the next step
     - name: Setup an environment vairable
       run: |
-        echo Currently the variable called \'nickname\' is set to ${{ env.nickname }}
+        echo Currently the variable called \'nickname\' is set to \'${{ env.nickname }}\'
         echo ::set-env name=nickname::JD
-        echo Unfortunately, the variable called \'nickname\' is still set to ${{ env.nickname }} within this context
+        echo Unfortunately, the variable called \'nickname\' is still set to \'${{ env.nickname }}\' within this context
     
     # Runs a pre-defined shell script, passing some environment variables as arguments
     - name: Run a shell script
-      id: shell-script-step
       env: 
         first_name: John
         last_name: Doe
-      run: ./hello-world.sh ${{ steps.shell-script-step.env.first_name }} ${{ steps.shell-script-step.env.last_name }} ${{ env.nickname }}
+      run: ./hello-world.sh ${{ job.say_hello.steps.env.first_name }} ${{ env.last_name }} ${{ env.nickname }}
       
