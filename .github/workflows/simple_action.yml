@@ -43,7 +43,7 @@ jobs:
     - name: Setup an environment variable
       run: |
         echo Currently the variable called \'nickname\' is set to \'${{ env.nickname }}\'
-        echo ::set-env name=nickname::JD
+        echo "nickname=JD" >> $GITHUB_ENV
         echo Unfortunately, the variable called \'nickname\' is still set to \'${{ env.nickname }}\' within this context
     
     # Runs a pre-defined shell script, passing some environment variables as arguments
